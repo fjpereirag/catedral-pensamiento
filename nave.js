@@ -35,7 +35,7 @@
     m.r = 0.018 + Math.random() * 0.03;
     return m;
   }
-  for (var i = 0; i < 70; i++) motas.push(nuevaMota(null, true));
+  for (var i = 0; i < 110; i++) motas.push(nuevaMota(null, true));
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, modo === 'foto' ? 1.25 : 1.5);
@@ -62,7 +62,7 @@
     var s = f / dz;
     return { x: cx + (x - cam.x) * s, y: cy - (y - cam.y) * s, s: s, dz: dz };
   }
-  function fog(dz) { return Math.max(0, Math.min(1, 1.08 - dz / 75)); }
+  function fog(dz) { return Math.max(0, Math.min(1, 1.15 - dz / 95)); }
   function gold(a) { return 'rgba(217,178,106,' + a.toFixed(3) + ')'; }
 
   function archPts(z) {
@@ -105,17 +105,17 @@
         ctx.beginPath(); ctx.moveTo(pr[0].x, pr[0].y);
         for (var k = 1; k < pr.length; k++) ctx.lineTo(pr[k].x, pr[k].y);
         ctx.closePath();
-        ctx.fillStyle = 'rgba(58,78,104,' + (0.38 * a).toFixed(3) + ')'; ctx.fill();
+        ctx.fillStyle = 'rgba(96,120,150,' + (0.45 * a).toFixed(3) + ')'; ctx.fill();
         ctx.strokeStyle = gold(0.35 * a); ctx.lineWidth = 1; ctx.stroke();
       });
     }
     [-1, 1].forEach(function (sd) {
       var x = sd * W;
-      quad([x - 0.32, 0, z], [x + 0.32, 0, z], [x + 0.32, HC, z], [x - 0.32, HC, z], 'rgba(42,32,24,' + (0.95 * a).toFixed(3) + ')');
+      quad([x - 0.32, 0, z], [x + 0.32, 0, z], [x + 0.32, HC, z], [x - 0.32, HC, z], 'rgba(70,53,38,' + (0.95 * a).toFixed(3) + ')');
       line3([[x - 0.32, 0, z], [x - 0.32, HC, z]], gold(0.55 * a), 1.2);
     });
     var q = P(0, HV, z);
-    line3(archPts(z), gold(0.75 * a), q ? Math.max(1, Math.min(5, q.s * 0.05)) : 1);
+    line3(archPts(z), gold(0.9 * a), q ? Math.max(1, Math.min(5, q.s * 0.05)) : 1);
     if (i < BAYS) {
       line3([[-W, HC, z], [-W, HC, z + D]], gold(0.35 * a), 1);
       line3([[W, HC, z], [W, HC, z + D]], gold(0.35 * a), 1);
@@ -128,7 +128,7 @@
     var fl1 = P(-W, 0, cam.z + 0.5), fr1 = P(W, 0, cam.z + 0.5), fl2 = P(-W, 0, ALTAR_Z), fr2 = P(W, 0, ALTAR_Z);
     if (fl1 && fr1 && fl2 && fr2) {
       ctx.beginPath(); ctx.moveTo(fl1.x, fl1.y); ctx.lineTo(fr1.x, fr1.y); ctx.lineTo(fr2.x, fr2.y); ctx.lineTo(fl2.x, fl2.y); ctx.closePath();
-      ctx.fillStyle = 'rgba(42,32,24,0.55)'; ctx.fill();
+      ctx.fillStyle = 'rgba(80,60,40,0.55)'; ctx.fill();
     }
     for (var k = 0; k < BAYS * 2; k++) {
       var z0 = k * D / 2;
@@ -141,8 +141,8 @@
     if (!q) return;
     var s = q.s, total = lit.length / N;
     var g = ctx.createRadialGradient(q.x, q.y, 0, q.x, q.y, 9 * s);
-    g.addColorStop(0, 'rgba(255,226,160,' + (0.35 + 0.45 * total) + ')');
-    g.addColorStop(0.35, 'rgba(217,160,90,' + (0.12 + 0.2 * total) + ')');
+    g.addColorStop(0, 'rgba(255,226,160,' + (0.6 + 0.35 * total) + ')');
+    g.addColorStop(0.35, 'rgba(217,160,90,' + (0.28 + 0.2 * total) + ')');
     g.addColorStop(1, 'rgba(20,15,11,0)');
     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(q.x, q.y, 9 * s, 0, Math.PI * 2); ctx.fill();
     /* el centro: un círculo de luz (PENSAR) */
@@ -166,14 +166,14 @@
     }
     var X = q.x + sw, s = q.s;
     var flick = reduce ? 1 : 1 + 0.07 * Math.sin(t / 170 + n * 1.7) + 0.04 * Math.sin(t / 53 + n);
-    var r = (on ? 1.7 : 0.6) * s * flick;
+    var r = (on ? 1.9 : 1.0) * s * flick;
     var g = ctx.createRadialGradient(X, q.y, 0, X, q.y, Math.max(2, r));
     if (on) {
       g.addColorStop(0, 'rgba(255,238,195,' + (0.95 * a) + ')');
       g.addColorStop(0.16, 'rgba(240,200,120,' + (0.55 * a) + ')');
       g.addColorStop(1, 'rgba(217,150,70,0)');
     } else {
-      g.addColorStop(0, 'rgba(210,130,80,' + (0.6 * a) + ')');
+      g.addColorStop(0, 'rgba(240,180,110,' + (0.75 * a) + ')');
       g.addColorStop(1, 'rgba(192,118,74,0)');
     }
     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(X, q.y, Math.max(2, r), 0, Math.PI * 2); ctx.fill();
@@ -184,7 +184,7 @@
     ctx.quadraticCurveTo(X - cw * 0.9, q.y + ch, X, q.y + ch);
     ctx.quadraticCurveTo(X + cw * 0.9, q.y + ch, X + cw, q.y - ch * 0.15);
     ctx.closePath();
-    ctx.fillStyle = on ? 'rgba(240,211,148,' + (0.9 * a) + ')' : 'rgba(120,70,40,' + (0.85 * a) + ')'; ctx.fill();
+    ctx.fillStyle = on ? 'rgba(240,211,148,' + (0.9 * a) + ')' : 'rgba(200,140,80,' + (0.9 * a) + ')'; ctx.fill();
     ctx.beginPath(); ctx.moveTo(X - cw * 1.1, q.y - ch * 0.15); ctx.lineTo(X + cw * 1.1, q.y - ch * 0.15);
     ctx.strokeStyle = gold(0.9 * a); ctx.lineWidth = Math.max(1, s * 0.03); ctx.stroke();
     hits.push({ n: n, x: X, y: q.y, r: Math.max(18, 0.9 * s) });
@@ -198,7 +198,7 @@
       var q = P(m.x, m.y, m.z);
       if (!q) continue;
       var tw = 0.55 + 0.45 * Math.sin(t / 700 + m.fase);
-      var a = fog(q.dz) * tw * 0.8;
+      var a = fog(q.dz) * tw;
       ctx.fillStyle = 'rgba(255,226,170,' + a.toFixed(3) + ')';
       ctx.beginPath(); ctx.arc(q.x, q.y, Math.max(0.6, m.r * q.s), 0, 6.283); ctx.fill();
     }
