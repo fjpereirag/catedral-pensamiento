@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La Catedral del Pensamiento · Diez estancias</title>
+<meta name="description" content="Diez estancias para aprender a preguntar, mirar y vivir con conciencia. En el centro, pensar.">
+<meta name="theme-color" content="#2a2018">
+<meta property="og:title" content="La Catedral del Pensamiento">
+<meta property="og:description" content="Diez estancias para aprender a preguntar, mirar y vivir con conciencia. En el centro, pensar.">
+<meta property="og:image" content="assets_img/foto-nave.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23140f0b'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23d9b26a' stroke-width='4'/%3E%3Cpath d='M24 40V29l4-5 4 4 4-4 4 5v11' fill='none' stroke='%23f0d394' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=1">
+</head>
+<body class="portada">
+<header class="cabecera">
+  <a class="marca" href="index.html"><span class="llama" aria-hidden="true"></span>La Catedral del Pensamiento</a>
+  <a class="cab-progreso" href="index.html#camino" data-pill aria-label="Tu progreso en el camino">0/10</a>
+</header>
+<div id="foto-nave" aria-hidden="true" data-foto3d="0.025"><img src="assets_img/foto-nave.webp" alt="" fetchpriority="high"></div>
+<canvas id="nave" aria-hidden="true"></canvas>
+<div id="velo" aria-hidden="true"></div>
+
+<main id="top">
+  <section class="hero" aria-labelledby="titulo">
+    <p class="kicker">Diez meditaciones para aprender a preguntar, mirar y vivir con conciencia</p>
+    <h1 id="titulo">La Catedral del Pensamiento</h1>
+    <p class="entradilla">Un recorrido por diez estancias. En el centro, <strong>pensar</strong>: no para vivir dentro de la cabeza, sino para volver a la realidad con una mirada menos automática.</p>
+    <a class="btn btn-oro btn-grande" data-continuar href="etapa.html?e=1">Entrar en la catedral</a>
+    <p class="progreso" data-progreso aria-live="polite"></p>
+  </section>
+
+  <section class="mapa" id="mapa" aria-labelledby="mapa-t">
+    <p class="mapa-kicker">El mapa interior</p>
+    <h2 id="mapa-t">Diez dimensiones del pensamiento consciente</h2>
+    <p class="mapa-intro">Primero una experiencia. Después una idea. Finalmente, una pregunta que puedas llevar a tu propia vida. Toca una estancia para entrar en ella.</p>
+    <svg id="mapa-svg" viewBox="0 0 500 500" role="img" aria-label="Pensar, en el centro, conectado con duda, verdad, tiempo, ser, libertad, belleza, muerte, silencio, conciencia y sentido"></svg>
+  </section>
+
+  <section class="camino" id="camino" aria-labelledby="camino-t">
+    <h2 id="camino-t">El camino</h2>
+    <p class="camino-intro">Avanza en orden y sin prisa: una estancia al día o una a la semana.</p>
+    <ol class="ruta" id="ruta"></ol>
+  </section>
+</main>
+
+<footer class="pie">
+  <p class="pie-nombre">La Catedral del Pensamiento</p>
+  <p>Las estancias que iluminas se guardan solo en este móvil. <button type="button" class="enlace" data-reiniciar>Empezar de cero</button></p>
+</footer>
+<script src="contenido.js?v=1"></script>
+<script src="nave.js?v=1"></script>
+<script src="app.js?v=1"></script>
+<script src="efectos.js?v=1"></script>
+</body>
+</html>
